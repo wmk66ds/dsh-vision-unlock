@@ -1,0 +1,13 @@
+# ============================================================================
+# dsh-vision-unlock —— bundle patch
+#
+# 只插入本插件自己的 Loader 条目，其余配置一行不动。
+# config 可选项见 README；默认即「所有 provider / 所有模型放行图片」。
+# ============================================================================
+
+- insert:
+    - id: vision-unlock
+      name: 'dsh-vision-unlock'
+      config:
+        providers: []
+        models: []

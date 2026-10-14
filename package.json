@@ -1,0 +1,35 @@
+{
+  "name": "dsh-vision-unlock",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "去掉 DSH 因模型未声明多模态能力而拒绝发送/读取图片的限制",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "meta": {
+    "title": "解除图片能力限制",
+    "description": "让未声明 image 输入能力的模型也能发送和读取图片，不再被 DSH 以「当前模型不支持图片」拒绝。"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh-plugin",
+    "dsh-bundle",
+    "image",
+    "multimodal",
+    "vision"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
