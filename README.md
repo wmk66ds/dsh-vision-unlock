@@ -36,17 +36,35 @@ DSH 判定一条路由能否吃图片，依据两处能力声明：
 
 ## 安装
 
-**方式 A：用 `plugin_manager` 工具（推荐）**
+### 方式 A：用 `plugin_manager` 安装（推荐）
 
-把本仓库 clone 到本地，然后在 DSH 里执行：
+在 DSH 里让 agent 执行：
 
 ```
-plugin_manager  action: install_bundle  target: <本仓库的绝对路径>
+plugin_manager  action: install_bundle  target: github:wmk66ds/dsh-vision-unlock
 ```
 
-**方式 B：手动安装**
+或在 Web UI 的 **设置 → 插件** 面板里，把上面这串填进安装框。
 
-1. 把本目录放到一个稳定的路径，例如 `D:\workbench\dsh-vision-unlock`。
+`target` 也可以写完整 URL，两种等价：
+
+| 写法 | 说明 |
+|---|---|
+| `github:wmk66ds/dsh-vision-unlock` | GitHub 简写，推荐 |
+| `https://github.com/wmk66ds/dsh-vision-unlock` | 完整 git URL |
+
+锁定版本用 `#` 加 ref：
+
+```
+github:wmk66ds/dsh-vision-unlock#v1.0.0
+```
+
+> 若本机访问 GitHub 不畅，DSH 走的是它自己的网络栈；必要时先确认你的代理环境
+> 能被 DSH 进程继承（例如 Clash Verge 的 TUN / 系统代理）。
+
+### 方式 B：手动安装（CLI 或插件管理不可用时的降级方案）
+
+1. 把本仓库放到一个稳定的路径，例如 `D:\workbench\dsh-vision-unlock`。
 2. 在你的 profile 目录（默认 `~/.dsh/profiles/desktop/`）的 `node_modules` 下建立指向它的链接：
 
    ```powershell
@@ -58,6 +76,8 @@ plugin_manager  action: install_bundle  target: <本仓库的绝对路径>
 4. 重启 DSH。
 
 > Windows 上用 **junction**（`mklink /J`）而不是符号链接——后者需要管理员权限。
+> 注意 desktop profile 由 Electron 应用独占管理，`dsh plugin --profile desktop`
+> 会拒绝执行，所以才有这里的手动步骤。
 
 ## 配置
 
